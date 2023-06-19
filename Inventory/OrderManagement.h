@@ -5,6 +5,7 @@
 #include <string>
 #include <chrono>
 #include <Item.h>
+#include <vector>
 
 class OrderManagement {
 private:
@@ -12,11 +13,9 @@ private:
     int order_id;
     std::string name;
     //TODO add functionality to add multiple item objects to an order 
-    //vector <Item> items;
+    std::vector <Item> items;
     //TODO add functionality to use user object instead of name
     std::string customer_name;
-    //TODO add functionality to use address object instead of address
-    std::string address;
     bool is_delivered;
     bool is_cancelled;
     std::chrono::system_clock::time_point order_date;

@@ -7,8 +7,6 @@ void OrderManagement::place_order() {
     std::cin >> name;
     std::cout << "Enter the customer name: ";
     std::cin >> customer_name;
-    std::cout << "Enter the address: ";
-    std::cin >> address;
     is_delivered = false;
     is_cancelled = false;
     order_date = std::chrono::system_clock::now();
@@ -25,6 +23,10 @@ void OrderManagement::cancel_order() {
 }
 
 void OrderManagement::update_status() {
+    if (is_delivered) {
+        std::cout << "Order already delivered" << std::endl;
+        return;
+    }
     is_delivered = true;
     delivery_date = std::chrono::system_clock::now();
     std::cout << "Order status updated" << std::endl;

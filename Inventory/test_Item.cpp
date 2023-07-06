@@ -3,10 +3,15 @@
 #include <string>
 #include <chrono>
 #include "Item.h"
+#include "util.h"
 
 int main(){
-    Item item;
-    item.set_item();
-    std::cout << item << std::endl;
+    // Item item;
+    // item.set_item();
+    // std::cout << item << std::endl;
+
+    Item item2("Item 2", "Item 2 description", 20, 200, 2, "Category 2", std::chrono::system_clock::now());
+    std::cout << item2 << std::endl;
+    std::cout << get_printable_date(item2.get_listed_date()) << std::endl;
     return 0;
 }

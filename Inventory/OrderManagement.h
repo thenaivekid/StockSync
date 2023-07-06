@@ -4,29 +4,24 @@
 #include <iostream>
 #include <string>
 #include <chrono>
-#include <Item.h>
 #include <vector>
+#include "Order.h"
+#include "util.h"
 
 class OrderManagement {
 private:
-    static long int order_count;
-    int order_id;
-    std::string name;
-    //TODO add functionality to add multiple item objects to an order 
-    std::vector <Item> items;
-    //TODO add functionality to use user object instead of name
-    std::string customer_name;
-    bool is_delivered;
-    bool is_cancelled;
-    std::chrono::system_clock::time_point order_date;
-    std::chrono::system_clock::time_point delivery_date;
+    std::vector <Order> orders;
 
 public:
     OrderManagement(){};
+
+    Order get_order_by_id(long int order_id);
     
     void place_order(); 
-    void cancel_order();
-    void update_status();
+
+    void cancel_order(long int order_id);
+
+    void update_delivery_status(long int order_id);
     
     friend std::ostream& operator<<(std::ostream& os, const OrderManagement& order);
 

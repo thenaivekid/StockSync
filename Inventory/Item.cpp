@@ -1,6 +1,12 @@
 #include "Item.h"
 #include "util.h"
 
+Item::Item(std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_, std::chrono::system_clock::time_point expiration_date_)
+: name(name_), description(description_), weight(weight_), price(price_), quantity(quantity_), category(category_), expiration_date(expiration_date_) {
+    item_id = item_count++;
+    listed_date = std::chrono::system_clock::now();
+}
+
 void Item::set_item() {
     item_id = item_count++;
     std::cout << "Enter name: ";
@@ -23,7 +29,35 @@ void Item::set_item() {
     std::cout << "Item added" << std::endl;
 }
 
+long int Item::get_id() {
+    return item_id;
+}
+
 long int Item::item_count = 0;
+
+float Item::get_weight(){
+    return weight;
+}
+
+int Item::get_price(){
+    return price;
+}
+
+int Item::get_quantity(){
+    return quantity;
+}
+
+std::string Item::get_category(){
+    return category;
+}
+
+std::chrono::system_clock::time_point Item::get_listed_date(){
+    return listed_date;
+}
+
+std::chrono::system_clock::time_point Item::get_expiration_date(){
+    return expiration_date;
+}
 
 std::ostream& operator<<(std::ostream &os, const Item& item){
     os << "Item ID: " << item.item_id << std::endl;

@@ -3,21 +3,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <Warehouse.h>
-#include <OrderManagement.h>
-#include 
+#include "Warehouse.h"
+#include "OrderManagement.h"
+#include "SupplyManagement.h"
 
 class InventoryManagement{
 private:
     std::vector <Warehouse> warehouses;
-    std::vector <OrderManagement> orders;
-    std::vector <SupplyManagement> supply;
 
+public:
     void add_warehouse();
     void remove_warehouse();
-    void add_supply();
-    void remove_supply();
-    void add_order();
-    void remove_order();
 };
 #endif

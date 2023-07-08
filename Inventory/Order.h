@@ -6,7 +6,7 @@
 #include <chrono>
 #include <vector>
 #include "util.h"
-// #include "OrderManagement.h"
+#include "Payment.h"
 
 class ItemClient{
 private:
@@ -69,8 +69,6 @@ public:
     void set_is_cancelled(bool b);
 
     void set_delivery_date();
-
-    friend class OrderManagement;
     
     friend std::ostream& operator<<(std::ostream& os, const Order& order);
 

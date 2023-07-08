@@ -1,4 +1,4 @@
-## UserAuthentication.cpp
+<!-- ## UserAuthentication.cpp
 
 - Contains the implementation of the UserAuthentication class, including member functions for user registration, login, and password management.
 - should have the address info
@@ -24,4 +24,7 @@
 
 - Contains the implementation of the Reporting class, responsible for generating performance reports and analytics.
 
-## Item done
+## Item done -->
+
+
+# Add payments to each order/supply? and then to each user as well?

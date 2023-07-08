@@ -3,6 +3,7 @@
 void OrderManagement::place_order() {
     Order order;
     order.set_order();
+    orders.push_back(order);
     std::cout << "Order placed" << std::endl;
 }
 

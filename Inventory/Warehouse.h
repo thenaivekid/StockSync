@@ -1,5 +1,5 @@
-#ifndef INVENTORYMANAGEMENT_H
-#define INVENTORYMANAGEMENT_H
+#ifndef Warehouse_H
+#define Warehouse_H
 
 #include <iostream>
 #include <string>
@@ -28,8 +28,9 @@ class Warehouse{
 
         std::vector <Rack> get_racks();
 
+        Rack get_rack_by_id(long int id);
+
         ~Warehouse(){};
-    // TODO getter
 
     friend std::ostream& operator<<(std::ostream& os, const Warehouse& warehouse);
 

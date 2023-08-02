@@ -7,11 +7,14 @@
 
 int main(){
     OrderManagement order_management;
+    order_management.get_order_by_id(0);
     order_management.place_order();
-    order_management.place_order();
+    // order_management.place_order();
 
-    order_management.cancel_order(1);
-    order_management.update_delivery_status(2);
+    order_management.cancel_order(0);
+    order_management.update_delivery_status(0);
 
+
+    std::cout << "showing orders" << std::endl;
     std::cout << order_management << std::endl;
 }

@@ -5,12 +5,16 @@
 #include <string>
 #include <chrono>
 #include <vector>
-#include "util.h"
-#include "Payment.h"
+#include "../util.h"
+#include <fstream>
+// #include "Payment.h"
+#include <limits>
 
 class ItemClient{
+    // TODO: inherit from the item class
 private:
     std::string name;
+    std::string category;
     int quantity;
 
 public:
@@ -22,6 +26,8 @@ public:
 
     std::string get_name();
 
+    std::string get_category();
+
     int get_quantity();
 
     ~ItemClient(){};
@@ -32,7 +38,8 @@ class Order {
 private:
     static long int order_count;
     long int order_id;
-    std::vector <ItemClient> items;
+    // std::vector <ItemClient> items;
+    ItemClient item;
     //TODO add functionality to use user object instead of name
     std::string customer_name;
     bool is_delivered;
@@ -43,8 +50,8 @@ private:
 public:
     Order(){};
 
-    Order(std::vector <ItemClient> items_, std::string customer_name_, std::vector <ItemClient> itmes_)
-    :order_id(order_count++), items(items_), customer_name(customer_name_), is_delivered(false), is_cancelled(false), order_date(std::chrono::system_clock::now()){
+    Order(ItemClient item_, std::string customer_name_)
+    :order_id(order_count++), item(item_), customer_name(customer_name_), is_delivered(false), is_cancelled(false), order_date(std::chrono::system_clock::now()){
         delivery_date = std::chrono::system_clock::now() + std::chrono::hours(24 * 5);
     };
 
@@ -52,7 +59,7 @@ public:
 
     long int get_order_id();
 
-    std::vector <ItemClient> get_items();
+    ItemClient get_item();
 
     std::string get_customer_name();
 
@@ -69,6 +76,10 @@ public:
     void set_is_cancelled(bool b);
 
     void set_delivery_date();
+
+    void save_as_file();
+
+    static Order read_order_file(long int order_id);
     
     friend std::ostream& operator<<(std::ostream& os, const Order& order);
 

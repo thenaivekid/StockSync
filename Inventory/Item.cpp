@@ -5,6 +5,7 @@ Item::Item(std::string name_, std::string description_, float weight_, int price
 : name(name_), description(description_), weight(weight_), price(price_), quantity(quantity_), category(category_), expiration_date(expiration_date_) {
     item_id = item_count++;
     listed_date = std::chrono::system_clock::now();
+    save_to_file();
 }
 
 void Item::set_item() {
@@ -27,6 +28,7 @@ void Item::set_item() {
     expiration_date = get_date();
     std::cout << get_printable_date(expiration_date) << std::endl;
     std::cout << "Item added" << std::endl;
+    save_to_file();
 }
 
 long int Item::get_id() {
@@ -57,6 +59,33 @@ std::chrono::system_clock::time_point Item::get_listed_date(){
 
 std::chrono::system_clock::time_point Item::get_expiration_date(){
     return expiration_date;
+}
+
+void Item::save_to_file(){
+    std::ofstream file;
+    file.open("items/" + std::to_string(item_id) + ".txt", std::ios::binary);
+    if(!file){
+        std::cout << "Error opening file" << std::endl;
+        return;
+    }
+    file.write(reinterpret_cast <char*>(this), sizeof(Item));
+    file.close();
+    std::cout << "Item saved to file" << std::endl;
+}
+
+Item Item::read_item_file(long int item_id_){
+    std::cout << "Reading item file " << item_id_ << std::endl;
+    std::ifstream file;
+    Item item;
+    file.open("items/" + std::to_string(item_id_) + ".txt", std::ios::binary);
+    if(!file){
+        std::cout << "Error opening file" << std::endl;
+        return item;
+    }
+    file.read(reinterpret_cast <char*> (&item), sizeof(Item));
+    file.close();
+    std::cout << item << std::endl;
+    return item;
 }
 
 std::ostream& operator<<(std::ostream &os, const Item& item){

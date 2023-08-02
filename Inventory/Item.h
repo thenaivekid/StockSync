@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <chrono>
+#include <fstream>
 
 class Item {
 private:
@@ -37,6 +38,10 @@ public:
     std::chrono::system_clock::time_point get_listed_date();
 
     std::chrono::system_clock::time_point get_expiration_date();
+
+    void save_to_file();
+
+    static Item read_item_file(long int item_id_);
 
     // TODO ADD GETTERS
     ~Item(){};

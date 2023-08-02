@@ -3,7 +3,7 @@
 void SupplyManagement::offer_supply(){
     Supply supply;
     supply.set_supply();
-    supplies.push_back(supply);
+    // supplies.push_back(supply);
     std::cout << "Supply offered" << std::endl;
 }
 
@@ -39,16 +39,20 @@ void SupplyManagement::accept_supply(long int supply_id){
 }
 
 Supply SupplyManagement::get_supply_by_id(long int supply_id){
-    for (int i = 0; i < supplies.size(); i++){
-        if (supplies[i].get_supply_id() == supply_id){
-            return supplies[i];
-        }
-    }
+    // for (int i = 0; i < supplies.size(); i++){
+    //     if (supplies[i].get_supply_id() == supply_id){
+    //         return supplies[i];
+    //     }
+    // }
+    std::cout << "reading supply from management " << supply_id << std::endl;
+    return Supply::read_supply_file(supply_id);
 }
 
 std::ostream& operator<<(std::ostream& os, const SupplyManagement& supply_management) {
-    for (auto supply: supply_management.supplies) {
-        os << supply;
-    }
+    // for (auto supply: supply_management.supplies) {
+    //     os << supply;
+    // }
+    os << "supplies: " << std::endl;
+    // get_supply_by_id(0);
     return os;
 }

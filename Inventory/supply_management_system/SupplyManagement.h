@@ -5,15 +5,16 @@
 #include <string>
 #include <chrono>
 #include <vector>
-#include "util.h"
-#include "Item.h"
+#include "../util.h"
+#include "../Item.h"
 #include "Supply.h"
 
+// TODO read all the files in the supplies folder and add them to the vector to read all
 
 // FIXME MAKE A SUPPLY CLASS AND USE THIS CLASS TO MANAGE SUPPLIES
 class SupplyManagement {
 private:
-    std::vector <Supply> supplies;
+    // std::vector <Supply> supplies;
 
 public:
     SupplyManagement(){};

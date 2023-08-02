@@ -21,7 +21,9 @@ public:
 
     void offer_supply();
 
-    Supply get_supply_by_id(long int supply_id);
+    void offer_supply(std::string supplier_name_, std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_);
+
+    static Supply read_supply_file(long int supply_id);
 
     void cancel_supply(long int supply_id);
 

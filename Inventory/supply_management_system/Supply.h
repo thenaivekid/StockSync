@@ -36,6 +36,8 @@ public:
 
     void set_supply();
 
+    void set_supply(std::string supplier_name_, std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_);
+
     void set_is_delivered(bool is_delivered_);
     
     void set_is_cancelled(bool is_cancelled_);

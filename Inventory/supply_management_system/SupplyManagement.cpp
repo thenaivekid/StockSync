@@ -7,8 +7,15 @@ void SupplyManagement::offer_supply(){
     std::cout << "Supply offered" << std::endl;
 }
 
+void SupplyManagement::offer_supply(std::string supplier_name_, std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_){
+    Supply supply;
+    supply.set_supply(supplier_name_, name_, description_, weight_, price_, quantity_, category_);
+    std::cout << "Supply offered" << std::endl;
+}
+
+
 void SupplyManagement::cancel_supply(long int supply_id){
-    Supply supply = get_supply_by_id(supply_id);
+    Supply supply = read_supply_file(supply_id);
     if (supply.get_is_delivered()){
         std::cout << "Supply already delivered" << std::endl;
         return;
@@ -18,7 +25,7 @@ void SupplyManagement::cancel_supply(long int supply_id){
 }
 
 void SupplyManagement::update_delivery_status(long int supply_id){
-    Supply supply = get_supply_by_id(supply_id);
+    Supply supply = read_supply_file(supply_id);
     if(supply.get_is_cancelled()){
         std::cout << "Supply already delivered" << std::endl;
         return;
@@ -29,7 +36,7 @@ void SupplyManagement::update_delivery_status(long int supply_id){
 }
 
 void SupplyManagement::accept_supply(long int supply_id){
-    Supply supply = get_supply_by_id(supply_id);
+    Supply supply = read_supply_file(supply_id);
     if(supply.get_is_cancelled()){
         std::cout << "Supply already cancelled" << std::endl;
         return;
@@ -38,7 +45,7 @@ void SupplyManagement::accept_supply(long int supply_id){
     std::cout << "Supply accepted" << std::endl;
 }
 
-Supply SupplyManagement::get_supply_by_id(long int supply_id){
+Supply SupplyManagement::read_supply_file(long int supply_id){
     // for (int i = 0; i < supplies.size(); i++){
     //     if (supplies[i].get_supply_id() == supply_id){
     //         return supplies[i];
@@ -53,6 +60,6 @@ std::ostream& operator<<(std::ostream& os, const SupplyManagement& supply_manage
     //     os << supply;
     // }
     os << "supplies: " << std::endl;
-    // get_supply_by_id(0);
+    // read_supply_file(0);
     return os;
 }

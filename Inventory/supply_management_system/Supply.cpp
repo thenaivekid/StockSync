@@ -24,6 +24,19 @@ void Supply::set_supply(){
     save_as_file();
 }
 
+void Supply::set_supply(std::string supplier_name_, std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_){
+    supply_id = supply_count++;
+    is_cancelled = false;
+    is_delivered = false;
+    is_accepted = false;
+    supply_date = std::chrono::system_clock::now();
+    delivery_date = std::chrono::system_clock::now() + std::chrono::hours(24 * 5);
+    supplier_name = supplier_name_;
+    item.set_item(name_, description_, weight_, price_, quantity_, category_);
+
+    save_as_file();
+}
+
 void Supply::set_is_delivered(bool is_delivered_){
     is_delivered = is_delivered_;
     save_as_file();

@@ -32,6 +32,12 @@ void ItemClient::set_item(){
     }
 }
 
+void ItemClient::set_item(std::string name_, std::string category_, int quantity_){
+    name = name_;
+    category = category_;
+    quantity = quantity_;
+}
+
 long int Order::order_count = 0;
 
 void Order::set_order(){
@@ -44,6 +50,20 @@ void Order::set_order(){
     std::cin >> customer_name;
     // std::cout << "Enter the items: " << std::endl;
     item.set_item();
+    std::cout << "new order created" << std::endl;
+
+    save_as_file();
+
+}
+
+void Order::set_order(std::string customer_name_, std::string name_, std::string category_, int quantity_){
+    order_id = order_count++;
+    is_cancelled = false;
+    is_delivered = false;
+    order_date = std::chrono::system_clock::now();
+    delivery_date = std::chrono::system_clock::now() + std::chrono::hours(24 * 5);
+    customer_name = customer_name_;
+    item.set_item(name_, category_, quantity_);
     std::cout << "new order created" << std::endl;
 
     save_as_file();

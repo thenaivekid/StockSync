@@ -8,19 +8,25 @@ void OrderManagement::place_order() {
     std::cout << "Order placed" << std::endl;
 }
 
+void OrderManagement::place_order(std::string customer_name_, std::string name_, std::string category_, int quantity_){
+    Order order;
+    order.set_order(customer_name_, name_, category_, quantity_);
+    std::cout << "Order placed" << std::endl;
+}
+
 void OrderManagement::cancel_order(long int order_id) {
-    Order order = get_order_by_id(order_id);
+    Order order = read_order_file(order_id);
     order.set_is_cancelled(true);
     std::cout << "Order cancelled" << std::endl;
 }
 
 void OrderManagement::update_delivery_status(long int order_id) {
-    Order order = get_order_by_id(order_id);
+    Order order = read_order_file(order_id);
     order.set_is_delivered(true);
     std::cout << "Order status updated" << std::endl;
 }
 
-// Order OrderManagement::get_order_by_id(long int order_id){
+// Order OrderManagement::read_order_file(long int order_id){
 //     for (int i = 0; i < orders.size(); i++){
 //         if (orders[i].get_order_id() == order_id){
 //             return orders[i];
@@ -28,10 +34,10 @@ void OrderManagement::update_delivery_status(long int order_id) {
 //     }
 // }
 
-    Order OrderManagement::get_order_by_id(long int order_id){
-        std::cout << "reading order file " << order_id << std::endl;
-        return Order::read_order_file(order_id);
-    }
+Order OrderManagement::read_order_file(long int order_id){
+    std::cout << "reading order file " << order_id << std::endl;
+    return Order::read_order_file(order_id);
+}
 
 
 

@@ -31,6 +31,18 @@ void Item::set_item() {
     save_to_file();
 }
 
+void Item::set_item(std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_){
+    item_id = item_count++;
+    name = name_;
+    description = description_;
+    weight = weight_;
+    price = price_;
+    quantity = quantity_;
+    category = category_;
+    listed_date = std::chrono::system_clock::now();
+    save_to_file();
+}
+
 long int Item::get_id() {
     return item_id;
 }

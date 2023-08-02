@@ -24,6 +24,8 @@ public:
 
     void set_item();
 
+    void set_item(std::string name_, std::string category_, int quantity_);
+
     std::string get_name();
 
     std::string get_category();
@@ -56,6 +58,8 @@ public:
     };
 
     void set_order();
+
+    void set_order(std::string customer_name_, std::string name_, std::string category_, int quantity_); 
 
     long int get_order_id();
 

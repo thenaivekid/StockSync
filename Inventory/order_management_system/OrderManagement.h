@@ -14,9 +14,11 @@ private:
 public:
     OrderManagement(){};
 
-    Order get_order_by_id(long int order_id);
+    static Order read_order_file(long int order_id);
     
     void place_order(); 
+
+    void place_order(std::string customer_name_, std::string name_, std::string category_, int quantity_);
 
     void cancel_order(long int order_id);
 

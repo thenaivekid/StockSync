@@ -25,6 +25,8 @@ public:
 
     void set_item();
 
+    void set_item(std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_);
+
     long int get_id();
 
     float get_weight();

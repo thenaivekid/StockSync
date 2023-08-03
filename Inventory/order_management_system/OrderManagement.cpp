@@ -1,30 +1,31 @@
 #include "OrderManagement.h"
+#include "Order.h"
 
-void OrderManagement::place_order() {
-    // order.set_order();
+// void OrderManagement::place_order() {
+//     // order.set_order();
+//     Order order;
+//     order.set_order();
+//     // order.push_back(order);
+//     std::cout << "Order placed" << std::endl;
+// }
+
+void OrderManagement::place_order(std::string customer_name_, std::string product_name_, int quantity_){
     Order order;
-    order.set_order();
-    // order.push_back(order);
+    order.set_order(customer_name_, product_name_, quantity_);
     std::cout << "Order placed" << std::endl;
 }
 
-void OrderManagement::place_order(std::string customer_name_, std::string name_, std::string category_, int quantity_){
-    Order order;
-    order.set_order(customer_name_, name_, category_, quantity_);
-    std::cout << "Order placed" << std::endl;
-}
+// void OrderManagement::cancel_order(long int order_id) {
+//     Order order = Order::read_order_file(order_id);
+//     order.set_is_cancelled(true);
+//     std::cout << "Order cancelled" << std::endl;
+// }
 
-void OrderManagement::cancel_order(long int order_id) {
-    Order order = read_order_file(order_id);
-    order.set_is_cancelled(true);
-    std::cout << "Order cancelled" << std::endl;
-}
-
-void OrderManagement::update_delivery_status(long int order_id) {
-    Order order = read_order_file(order_id);
-    order.set_is_delivered(true);
-    std::cout << "Order status updated" << std::endl;
-}
+// void OrderManagement::update_delivery_status(long int order_id) {
+//     Order order = Order::read_order_file(order_id);
+//     order.set_is_delivered(true);
+//     std::cout << "Order status updated" << std::endl;
+// }
 
 // Order OrderManagement::read_order_file(long int order_id){
 //     for (int i = 0; i < orders.size(); i++){
@@ -35,7 +36,7 @@ void OrderManagement::update_delivery_status(long int order_id) {
 // }
 
 Order OrderManagement::read_order_file(long int order_id){
-    std::cout << "reading order file " << order_id << std::endl;
+    std::cout << "reading order file ordermanagement  " << order_id << std::endl;
     return Order::read_order_file(order_id);
 }
 

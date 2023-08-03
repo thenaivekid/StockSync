@@ -10,60 +10,28 @@
 // #include "Payment.h"
 #include <limits>
 
-class ItemClient{
-    // TODO: inherit from the item class
-private:
-    std::string name;
-    std::string category;
-    int quantity;
-
-public:
-    ItemClient(){};
-
-    ItemClient(std::string name_, int quantity_):name(name_), quantity(quantity_){};
-
-    void set_item();
-
-    void set_item(std::string name_, std::string category_, int quantity_);
-
-    std::string get_name();
-
-    std::string get_category();
-
-    int get_quantity();
-
-    ~ItemClient(){};
-};
-
 
 class Order {
 private:
     static long int order_count;
     long int order_id;
-    // std::vector <ItemClient> items;
-    ItemClient item;
     //TODO add functionality to use user object instead of name
     std::string customer_name;
     bool is_delivered;
     bool is_cancelled;
     std::chrono::system_clock::time_point order_date;
     std::chrono::system_clock::time_point delivery_date;
+    std::string product_name;
+    int quantity;
 
 public:
     Order(){};
 
-    Order(ItemClient item_, std::string customer_name_)
-    :order_id(order_count++), item(item_), customer_name(customer_name_), is_delivered(false), is_cancelled(false), order_date(std::chrono::system_clock::now()){
-        delivery_date = std::chrono::system_clock::now() + std::chrono::hours(24 * 5);
-    };
+    // void set_order();
 
-    void set_order();
-
-    void set_order(std::string customer_name_, std::string name_, std::string category_, int quantity_); 
+    void set_order(std::string customer_name_, std::string product_name_, int quantity_); 
 
     long int get_order_id();
-
-    ItemClient get_item();
 
     std::string get_customer_name();
 
@@ -81,7 +49,7 @@ public:
 
     void set_delivery_date();
 
-    void save_as_file();
+    void save_to_file();
 
     static Order read_order_file(long int order_id);
     

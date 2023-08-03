@@ -14,15 +14,15 @@ private:
 public:
     OrderManagement(){};
 
-    static Order read_order_file(long int order_id);
+    Order read_order_file(long int order_id);
     
-    void place_order(); 
+    void place_order(std::string customer_name_, std::string product_name_, int quantity_);
+    // void place_order(); 
 
-    void place_order(std::string customer_name_, std::string name_, std::string category_, int quantity_);
 
-    void cancel_order(long int order_id);
+    // void cancel_order(long int order_id);
 
-    void update_delivery_status(long int order_id);
+    // void update_delivery_status(long int order_id);
     
     friend std::ostream& operator<<(std::ostream& os, const OrderManagement& order);
 

@@ -1,4 +1,4 @@
-//g++ .\test_OrderManagement.cpp .\Order.cpp .\OrderManagement.cpp ..\util.cpp  -o .\test_OrderManagement.exe
+//g++ .\test_OrderManagement.cpp .\OrderManagement.cpp ..\util.cpp .\Order.cpp -o .\test_OrderManagement.exe
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,8 +19,9 @@ int main(){
     // std::cout << order_management << std::endl;
 
     OrderManagement order_management;
-    order_management.place_order("customer1", "item1", "category1", 1);
-    Order order1 = OrderManagement::read_order_file(0);
+    order_management.place_order("customer1", "product1", 1);
+    std::cout << "hello" << std::endl;
+    Order order1 = order_management.read_order_file(0);
     std::cout << order1 << std::endl;
 
     std::cout << "showing orders 1" << std::endl;

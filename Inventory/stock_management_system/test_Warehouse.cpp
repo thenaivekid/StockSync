@@ -1,4 +1,4 @@
-// g++ ..\Item.cpp .\Warehouse.cpp .\WarehouseItem.cpp .\test_Warehouse.cpp ..\util.cpp -o .\test_Warehouse.exe
+// g++ -std=c++17 ..\Item.cpp .\Warehouse.cpp .\WarehouseItem.cpp .\test_Warehouse.cpp ..\util.cpp -o .\test_Warehouse.exe
 #include <iostream>
 #include <string>
 #include <vector>
@@ -36,4 +36,11 @@ int main(){
     warehouse1.add_item("Item x", "Item on", 10, 100, 1, "cat 2");
     item = warehouse1.read_item_file(2);
     std::cout << item << std::endl;
+
+    std::vector <std::string> file_names = warehouse1.get_all_item_files();
+    for (int i = 0; i < file_names.size(); i++){
+        std::cout << file_names[i] << std::endl;
+    }
+
+    std::cout << "all test passed" << std::endl;
 }

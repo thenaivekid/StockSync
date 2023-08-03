@@ -40,6 +40,14 @@ Order OrderManagement::read_order_file(long int order_id){
     return Order::read_order_file(order_id);
 }
 
+std::vector <std::string> OrderManagement::get_all_order_files(){
+    std::vector <std::string> file_names;
+    for (const auto& entry : std::filesystem::directory_iterator("./orders")) {
+        file_names.push_back(entry.path().string());
+    }
+    return file_names;
+}
+
 
 
 

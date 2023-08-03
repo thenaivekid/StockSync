@@ -52,3 +52,11 @@ WarehouseItem Warehouse::read_item_file(long int id){
     std::cout << item << std::endl;
     return item;
 }
+
+std::vector <std::string> Warehouse::get_all_item_files(){
+    std::vector <std::string> file_names;
+    for (const auto& entry : std::filesystem::directory_iterator("./items")) {
+        file_names.push_back(entry.path().string());
+    }
+    return file_names;
+}

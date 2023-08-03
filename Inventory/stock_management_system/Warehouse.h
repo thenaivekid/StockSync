@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 #include "WarehouseItem.h"
+#include "../util.h"
+#include <filesystem>
+#include <fstream>
 // #include "Rack.h"
 
 class Warehouse{
@@ -23,6 +26,10 @@ class Warehouse{
     void add_item(std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_);
     void remove_item(long int id);
     std::vector <WarehouseItem> get_all_items();
+
+    std::vector <std::string> get_all_item_files();
+
+
 
     WarehouseItem read_item_file(long int id);
 

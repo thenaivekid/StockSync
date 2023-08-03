@@ -55,6 +55,14 @@ Supply SupplyManagement::read_supply_file(long int supply_id){
     return Supply::read_supply_file(supply_id);
 }
 
+std::vector <std::string> SupplyManagement::get_all_supply_files(){
+    std::vector <std::string> file_names;
+    for (const auto& entry : std::filesystem::directory_iterator("./supplies")) {
+        file_names.push_back(entry.path().string());
+    }
+    return file_names;
+}
+
 std::ostream& operator<<(std::ostream& os, const SupplyManagement& supply_management) {
     // for (auto supply: supply_management.supplies) {
     //     os << supply;

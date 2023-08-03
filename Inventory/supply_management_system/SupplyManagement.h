@@ -6,6 +6,8 @@
 #include <chrono>
 #include <vector>
 #include "../util.h"
+#include <filesystem>
+#include <fstream>
 #include "Supply.h"
 
 // TODO read all the files in the supplies folder and add them to the vector to read all
@@ -23,6 +25,8 @@ public:
     void offer_supply(std::string supplier_name_, std::string name_,  int quantity_, int price_, std::string category_);
 
     static Supply read_supply_file(long int supply_id);
+
+    std::vector <std::string> get_all_supply_files();
 
     void cancel_supply(long int supply_id);
 

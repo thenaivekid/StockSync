@@ -1,4 +1,4 @@
-//g++ .\test_OrderManagement.cpp .\OrderManagement.cpp ..\util.cpp .\Order.cpp -o .\test_OrderManagement.exe
+//g++ -std=c++17 .\test_OrderManagement.cpp .\OrderManagement.cpp ..\util.cpp .\Order.cpp -o .\test_OrderManagement.exe
 #include <iostream>
 #include <string>
 #include <vector>
@@ -34,5 +34,13 @@ int main(){
     std::cout << "hello" << std::endl;
     order1 = order_management.read_order_file(0);
     std::cout << order1 << std::endl;
+
+    std::vector <std::string> file_names = order_management.get_all_order_files();
+
+    for (int i = 0; i < file_names.size(); i++){
+        std::cout << file_names[i] << std::endl;
+    }
+
+    std::cout << "all test passed" << std::endl;
 
 }

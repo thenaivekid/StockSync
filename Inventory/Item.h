@@ -7,7 +7,7 @@
 #include <fstream>
 
 class Item {
-private:
+protected:
     static long int item_count;
     long int item_id;
     std::string name;
@@ -40,10 +40,6 @@ public:
     std::chrono::system_clock::time_point get_listed_date();
 
     std::chrono::system_clock::time_point get_expiration_date();
-
-    void save_to_file();
-
-    static Item read_item_file(long int item_id_);
 
     // TODO ADD GETTERS
     ~Item(){};

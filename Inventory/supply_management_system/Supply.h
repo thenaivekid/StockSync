@@ -7,7 +7,6 @@
 #include <vector>
 #include <fstream>
 #include "../util.h"
-#include "../Item.h"
 
 class Supply {
 private:
@@ -20,23 +19,18 @@ private:
     std::string supplier_name;
     std::chrono::system_clock::time_point supply_date;
     std::chrono::system_clock::time_point delivery_date;
-    // std::vector<Item> items;
-    Item item;
+    // std::vector<SupplyItem> items;
+    std::string product_name;
+    int quantity;
+    int price;
+    std::string category;
 
 public:
     Supply(){};
 
-    Supply(Item item_)
-    : item(item_) {
-        supply_id = supply_count++;
-        is_delivered = false;
-        is_cancelled = false;
-        is_accepted = false;
-    }
-
     void set_supply();
 
-    void set_supply(std::string supplier_name_, std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_);
+    void set_supply(std::string supplier_name_, std::string name_,  int quantity_, int price_, std::string category_);
 
     void set_is_delivered(bool is_delivered_);
     
@@ -44,7 +38,7 @@ public:
 
     void set_is_accepted(bool is_accepted_);
 
-    Item get_item();
+    // SupplyItem get_item();
 
     bool get_is_delivered();
 
@@ -62,7 +56,7 @@ public:
 
     long int get_supply_id();
 
-    void save_as_file();
+    void save_to_file();
 
     static Supply read_supply_file(long int supply_id);
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "..\Item.h"
+#include "WarehouseItem.h"
 // #include "Rack.h"
 
 class Warehouse{
@@ -20,15 +20,16 @@ class Warehouse{
         // Warehouse(std::string name_, std::vector<Rack> racks_) : name(name_), racks(racks_){
         //     // id = warehouse_count++;
         // }
-    void add_item(Item item);
-    void remove_item(Item item);
+    void add_item(std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_);
+    void remove_item(long int id);
+    std::vector <WarehouseItem> get_all_items();
 
-    Item get_item_by_id(long int id);
+    WarehouseItem read_item_file(long int id);
 
-    int get_id();
+    // int get_id();
 
 // TODO
-    std::vector <Item> get_items_by_category();
+    std::vector <WarehouseItem> get_items_by_category();
 
 
         // void add_rack(Rack rack);

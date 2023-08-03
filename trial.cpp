@@ -1,42 +1,93 @@
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <chrono>
 
-int main() {
-    // Prompt the user for input
-    std::cout << "Enter the date (YYYY-MM-DD): ";
-    std::string userInput;
-    std::cin >> userInput;
+class Person {
+private:
+    std::string name;
+    std::string petName;
+    int age;
+    std::string phone;
+    std::string address;
 
-    // Parse the user input and create a time_point
-    std::chrono::system_clock::time_point date;
-    try {
-        // Extract year, month, and day from the user input
-        int year = std::stoi(userInput.substr(0, 4));
-        int month = std::stoi(userInput.substr(5, 2));
-        int day = std::stoi(userInput.substr(8, 2));
+public:
+    Person() : name(""), age(0) {}
+    Person(std::string name_, std::string petName_, int age_, std::string phone_, std::string address_) : name(name_), petName(petName_), age(age_), phone(phone_), address(address_) {}
 
-        // Create the time_point using the parsed values
-        std::tm timeInfo{};
-        timeInfo.tm_year = year - 1900; // Years since 1900
-        timeInfo.tm_mon = month - 1;    // Months since January (0-based)
-        timeInfo.tm_mday = day;
+    // Serialization method
+    void serialize(std::ofstream& ofs) const {
+        std::string::size_type nameSize = name.size();
+        std::string::size_type petNameSize = petName.size();
+        std::string::size_type phoneSize = phone.size();
+        std::string::size_type addressSize = address.size();
 
-        // Convert tm struct to time_t
-        std::time_t time = std::mktime(&timeInfo);
+        ofs.write(reinterpret_cast<const char*>(&nameSize), sizeof(nameSize));
+        ofs.write(name.c_str(), nameSize);
 
-        // Create the time_point from the time_t value
-        date = std::chrono::system_clock::from_time_t(time);
-    } catch (const std::exception& e) {
-        std::cerr << "Invalid date input: " << e.what() << std::endl;
-        return 1;
+        ofs.write(reinterpret_cast<const char *> (&petNameSize), sizeof(petNameSize));
+        ofs.write(petName.c_str(), petNameSize);
+
+        ofs.write(reinterpret_cast<const char*>(&age), sizeof(age));
+
+        ofs.write(reinterpret_cast<const char*>(&phoneSize), sizeof(phoneSize));
+        ofs.write(phone.c_str(), phoneSize);
+
+        ofs.write(reinterpret_cast<const char*>(&addressSize), sizeof(addressSize));
+        ofs.write(address.c_str(), addressSize);
     }
 
-    // Convert the time_point to time_t
-    std::time_t time = std::chrono::system_clock::to_time_t(date);
+    // Deserialization method
+    void deserialize(std::ifstream& ifs) {
+        std::string::size_type nameSize;
+        std::string::size_type petNameSize;
+        std::string::size_type phoneSize;
+        std::string::size_type addressSize;
 
-    // Display the entered date
-    std::cout << "Entered date: " << std::ctime(&time);
+        ifs.read(reinterpret_cast<char*>(&nameSize), sizeof(nameSize));
+        // char buffer[nameSize];
+        char buffer[nameSize + 1];
+        ifs.read(buffer, nameSize);
+        buffer[nameSize] = '\0'; // Null-terminate the string
+        name = std::string(buffer);
+
+        ifs.read(reinterpret_cast<char*>(&petNameSize), sizeof(petNameSize));
+        ifs.read(buffer, petNameSize);
+        buffer[petNameSize] = '\0';
+        petName = std::string(buffer);
+
+        ifs.read(reinterpret_cast<char*>(&age), sizeof(age));
+
+        ifs.read(reinterpret_cast<char*>(&phoneSize), sizeof(phoneSize));
+        ifs.read(buffer, phoneSize);
+        buffer[phoneSize] = '\0'; // Null-terminate the string
+        phone = std::string(buffer);
+
+        ifs.read(reinterpret_cast<char*>(&addressSize), sizeof(addressSize));
+        ifs.read(buffer, addressSize);
+        buffer[addressSize] = '\0'; // Null-terminate the string
+        address = std::string(buffer);
+    }
+
+    void print() const {
+        std::cout << "Name: " << name << "pet name: " << petName << ", Age: " << age << ", Phone: " << phone << ", Address: " << address << std::endl;
+    }
+};
+
+int main() {
+    // Create a Person object and serialize it to a file
+    Person person1("John donkey is a bad ass.", "Winner", 30, "9823594372", "Mandan Deupur");
+    std::ofstream outFile("person_data.dat", std::ios::binary);
+    person1.serialize(outFile);
+    outFile.close();
+
+    // Deserialize the object from the file and read it back
+    Person person2;
+    std::ifstream inFile("person_data.dat", std::ios::binary);
+    person2.deserialize(inFile);
+    inFile.close();
+
+    // Print the deserialized object
+    person2.print();
 
     return 0;
 }

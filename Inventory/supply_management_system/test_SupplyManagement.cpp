@@ -1,4 +1,4 @@
-// g++ ..\Item.cpp .\test_SupplyManagement.cpp .\Supply.cpp .\SupplyManagement.cpp ..\util.cpp  -o .\test_SupplyManagement.exe
+// g++ .\test_SupplyManagement.cpp .\Supply.cpp .\SupplyManagement.cpp ..\util.cpp  -o .\test_SupplyManagement.exe
 #include <iostream>
 #include "SupplyManagement.h"
 
@@ -18,7 +18,7 @@ int main() {
     // std::cout << "Supply details:\n" << supply << std::endl;
 
     SupplyManagement supplyManager1;
-    supplyManager1.offer_supply("supplier1", "item1", "item1 description", 1.0, 100, 10, "category1");
+    supplyManager1.offer_supply("hari", "rice", 10, 100, "food");
     Supply supply1 = SupplyManagement::read_supply_file(0);
     return 0;
 }

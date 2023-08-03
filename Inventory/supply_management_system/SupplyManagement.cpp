@@ -7,9 +7,9 @@ void SupplyManagement::offer_supply(){
     std::cout << "Supply offered" << std::endl;
 }
 
-void SupplyManagement::offer_supply(std::string supplier_name_, std::string name_, std::string description_, float weight_, int price_, int quantity_, std::string category_){
+void SupplyManagement::offer_supply(std::string supplier_name_, std::string name_,  int quantity_, int price_, std::string category_){
     Supply supply;
-    supply.set_supply(supplier_name_, name_, description_, weight_, price_, quantity_, category_);
+    supply.set_supply(supplier_name_, name_, quantity_, price_, category_);
     std::cout << "Supply offered" << std::endl;
 }
 

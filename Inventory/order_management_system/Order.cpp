@@ -83,12 +83,6 @@ void Order::save_to_file() {
     }
     // file.write(reinterpret_cast <char*> (this), sizeof(Order));
 
-<<<<<<< HEAD
-    file.write(reinterpret_cast<const char*>(&order_id), sizeof(order_id));
-
-    // Write customer_name as a null-terminated string
-=======
->>>>>>> dev
     std::string::size_type customerNameSize = customer_name.size();
     file.write(reinterpret_cast<const char*>(&customerNameSize), sizeof(customerNameSize));
     file.write(customer_name.c_str(), customerNameSize);
@@ -96,17 +90,9 @@ void Order::save_to_file() {
     file.write(reinterpret_cast<const char*>(&is_delivered), sizeof(is_delivered));
     file.write(reinterpret_cast<const char*>(&is_cancelled), sizeof(is_cancelled));
 
-<<<<<<< HEAD
-    // Write order_date and delivery_date
     file.write(reinterpret_cast<const char*>(&order_date), sizeof(order_date));
     file.write(reinterpret_cast<const char*>(&delivery_date), sizeof(delivery_date));
 
-    // Write product_name as a null-terminated string
-=======
-    file.write(reinterpret_cast<const char*>(&order_date), sizeof(order_date));
-    file.write(reinterpret_cast<const char*>(&delivery_date), sizeof(delivery_date));
-
->>>>>>> dev
     std::string::size_type productNameSize = product_name.size();
     file.write(reinterpret_cast<const char*>(&productNameSize), sizeof(productNameSize));
     file.write(product_name.c_str(), productNameSize);
@@ -127,11 +113,6 @@ Order Order::read_order_file(long int order_id){
         return order;
     }
     // file.read(reinterpret_cast <char*> (&order), sizeof(order));
-<<<<<<< HEAD
-
-
-    file.close();       
-=======
     
         // Read customer_name
     
@@ -165,7 +146,6 @@ Order Order::read_order_file(long int order_id){
 
     file.close(); 
     std::cout << "Order read from file from order" << std::endl;      
->>>>>>> dev
     std::cout << order;
     return order;
 }

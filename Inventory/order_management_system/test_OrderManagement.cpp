@@ -24,14 +24,15 @@ int main(){
     Order order1 = order_management.read_order_file(0);
     std::cout << order1 << std::endl;
 
-    std::cout << "showing orders 1" << std::endl;
-
-    order_management.place_order("xx", "2324d", "category1", 3);
-    order1 = OrderManagement::read_order_file(1);
+    
+    order_management.place_order("customer1", "product1", 1);
+    std::cout << "hello" << std::endl;
+    order1 = order_management.read_order_file(0);
     std::cout << order1 << std::endl;
 
-    order_management.place_order("yy", "4", "cat3", 1);
-    order1 = OrderManagement::read_order_file(2);
+    order_management.place_order("customer1", "product1", 1);
+    std::cout << "hello" << std::endl;
+    order1 = order_management.read_order_file(0);
     std::cout << order1 << std::endl;
 
 }

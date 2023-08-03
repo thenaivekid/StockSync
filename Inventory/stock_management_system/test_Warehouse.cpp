@@ -28,4 +28,12 @@ int main(){
     warehouse1.add_item("Item 1", "Item 1 description", 10, 100, 1, "Category 1");
     WarehouseItem item = warehouse1.read_item_file(0);
     std::cout << item << std::endl;
+
+    warehouse1.add_item("Item 2", "Item 2description", 10, 69, 1, "Category 1");
+    item = warehouse1.read_item_file(1);
+    std::cout << item << std::endl;
+
+    warehouse1.add_item("Item x", "Item on", 10, 100, 1, "cat 2");
+    item = warehouse1.read_item_file(2);
+    std::cout << item << std::endl;
 }
